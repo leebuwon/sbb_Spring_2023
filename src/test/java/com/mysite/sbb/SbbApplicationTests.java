@@ -9,6 +9,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
@@ -227,7 +228,8 @@ class SbbApplicationTests {
 		assertEquals(2, a.getQuestion().getId());
 	}
 
-	@Transactional
+	@Transactional // Test에서는 @Transactional 붙으면 기본적으로 rollback이 된다.
+	@Rollback(value = false)
 	@Test
 	@DisplayName("질문에 달린 답변 찾기")
 	void t011() {
