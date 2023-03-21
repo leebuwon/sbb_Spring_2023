@@ -95,7 +95,6 @@ class SbbApplicationTests {
 	@Test
 	void testJpa2() {
 		// 답변에 연결된 질문 찾기 vs 질문에 달린 답변 찾기
-		// 오류
 		Optional<Question> oq = this.questionRepository.findById(2);
 		assertTrue(oq.isPresent());
 		Question q = oq.get();

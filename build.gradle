@@ -27,6 +27,10 @@ dependencies {
 
 	runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
 
+//	thymeleaf 의존성 추가
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect'
+
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
