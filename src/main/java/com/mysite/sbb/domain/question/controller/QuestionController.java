@@ -1,13 +1,17 @@
 package com.mysite.sbb.domain.question.controller;
 
+import com.mysite.sbb.domain.answer.dto.CreateAnswerDto;
+import com.mysite.sbb.domain.question.dto.CreateQuestionDto;
 import com.mysite.sbb.domain.question.entity.Question;
-import com.mysite.sbb.domain.question.repository.QuestionRepository;
 import com.mysite.sbb.domain.question.service.QuestionService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
@@ -33,10 +37,26 @@ public class QuestionController {
     }
 
     @GetMapping(value = "/detail/{id}")
-    public String detail(Model model, @PathVariable("id") Integer id){
+    public String detail(Model model, @PathVariable("id") Integer id,
+                         CreateAnswerDto createAnswerDto){
         Question question = this.questionService.getQuestion(id);
         model.addAttribute("question", question);
 
         return "question_detail";
+    }
+
+    @GetMapping("/create")
+    public String questionCreate(CreateQuestionDto createQuestionDto) {
+        return "question_form";
+    }
+
+    @PostMapping("/create")
+    public String createQuestion(@Valid CreateQuestionDto createQuestionDto,
+                                 BindingResult bindingResult){ //BindingResult 매개변수는 항상 @Valid 매개변수 바로 뒤에 위치해야 한다.
+        if (bindingResult.hasErrors()){
+            return "question_form";
+        }
+        questionService.create(createQuestionDto.getSubject(), createQuestionDto.getContent());
+        return "redirect:/question/list";
     }
 }
