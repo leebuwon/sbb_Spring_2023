@@ -1,4 +1,4 @@
-package com.mysite.sbb.domain.global.config;
+package com.mysite.sbb.domain.common.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
