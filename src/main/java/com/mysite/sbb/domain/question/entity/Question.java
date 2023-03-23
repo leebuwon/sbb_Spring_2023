@@ -22,6 +22,7 @@ public class Question {
     @Column(columnDefinition = "TEXT")
     private String content;
     private LocalDateTime createDate;
+    private LocalDateTime modifyDate;
     // CascadeType.REMOVE
     // 질문 하나에는 여러개의 답변이 작성될 수 있다. 이때 질문을 삭제하면 그에 달린 답변들도 모두 함께 삭제하기 위해서 @OneToMany의 속성으로 cascade = CascadeType.REMOVE를 사용했다.
     @OneToMany(mappedBy = "question", cascade = CascadeType.REMOVE) // Answer클래스에 question이랑 연결되어 있다.
