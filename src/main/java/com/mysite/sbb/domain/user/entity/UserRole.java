@@ -1,7 +1,6 @@
 package com.mysite.sbb.domain.user.entity;
 
 import lombok.Getter;
-import org.springframework.web.bind.annotation.GetMapping;
 
 @Getter
 public enum UserRole {

@@ -4,7 +4,6 @@ import com.mysite.sbb.domain.question.exception.DataNotFoundException;
 import com.mysite.sbb.domain.user.entity.SiteUser;
 import com.mysite.sbb.domain.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
