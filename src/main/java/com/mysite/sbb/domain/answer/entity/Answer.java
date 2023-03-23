@@ -28,5 +28,5 @@ public class Answer {
     private SiteUser author;
 
     @ManyToMany
-    Set<SiteUser> voter;
+    Set<SiteUser> voter; // List가 아닌 Set으로 한 이유는 추천인은 중복되면 안되기 때문
 }
