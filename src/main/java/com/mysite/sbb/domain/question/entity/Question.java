@@ -1,6 +1,7 @@
 package com.mysite.sbb.domain.question.entity;
 
 import com.mysite.sbb.domain.answer.entity.Answer;
+import com.mysite.sbb.domain.user.entity.SiteUser;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -26,6 +27,9 @@ public class Question {
     @OneToMany(mappedBy = "question", cascade = CascadeType.REMOVE) // Answer클래스에 question이랑 연결되어 있다.
     // oneToMany에는 직접 객체 초기화를 진행해준다.
     private List<Answer> answerList = new ArrayList<>();
+
+    @ManyToOne
+    private SiteUser author;
 
     public void addAnswer(Answer a) {
         a.setQuestion(this);
