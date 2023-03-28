@@ -19,19 +19,19 @@ public class SecurityConfig {
 
     @Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
-        http.authorizeHttpRequests().requestMatchers(
-                new AntPathRequestMatcher("/**")).permitAll()
-        /**
-         * 나는 H2 데이터베이스를 사용하지 않기 때문에 csrf 옵션을 따로 설정해주지 않아도 된다.
-         * 그래도 언제 사용할지 모르니 주석처리 해놓기로 한다.
-         */
-//                .and()
-//                .csrf().ignoringRequestMatchers(
-//                        new AntPathRequestMatcher("/h2-console/**"))
-//                .and()
-//                .headers()
-//                .addHeaderWriter(new XFrameOptionsHeaderWriter(XFrameOptionsHeaderWriter.XFrameOptionsMode.SAMEORIGIN));
-                .and()
+        http
+//                .authorizeHttpRequests().requestMatchers(
+//                new AntPathRequestMatcher("/**")).permitAll()
+                // 권한 설정
+                .authorizeHttpRequests(
+                        authorizeHttpRequests -> authorizeHttpRequests
+                                .requestMatchers(new AntPathRequestMatcher("/question/list")).permitAll()
+                                .requestMatchers(new AntPathRequestMatcher("/user/login")).permitAll()
+                                .requestMatchers(new AntPathRequestMatcher("/style.css")).permitAll()
+                                .requestMatchers(new AntPathRequestMatcher("/bootstrap.min.css")).permitAll()
+                                .requestMatchers(new AntPathRequestMatcher("/bootstrap.min.js")).permitAll()
+                                .anyRequest().authenticated()
+                )
                     .formLogin()
                     .loginPage("/user/login")
                     .defaultSuccessUrl("/")
