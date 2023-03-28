@@ -27,6 +27,7 @@ public class SecurityConfig {
                         authorizeHttpRequests -> authorizeHttpRequests
                                 .requestMatchers(new AntPathRequestMatcher("/question/list")).permitAll()
                                 .requestMatchers(new AntPathRequestMatcher("/user/login")).permitAll()
+                                .requestMatchers(new AntPathRequestMatcher("/user/signup")).permitAll()
                                 .requestMatchers(new AntPathRequestMatcher("/style.css")).permitAll()
                                 .requestMatchers(new AntPathRequestMatcher("/bootstrap.min.css")).permitAll()
                                 .requestMatchers(new AntPathRequestMatcher("/bootstrap.min.js")).permitAll()
